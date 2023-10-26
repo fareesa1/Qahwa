@@ -36,8 +36,9 @@ function preload(){
     let imageName = `talk${i}.png`;
     loadImage(imageName);
   }
-  girl_talking = loadAnimation("talk1.png","talk2.png","talk3.png","talk4.png","talk1.png","talk5.png","talk6.png","talk7.png","talk8.png")
-  bg_image = loadImage("background.png")
+ girl_talking = loadAnimation("char1.png","char2.png","char3.png","char1.png","char2.png","char3.png")
+  girl_talking_upset = loadAnimation("char1.png","upset.png","char1.png","upset.png","char1.png")
+    bg_image = loadImage("background.png")
   esp_image = loadImage("espresso.png")
   es_img = loadImage("es.png")
   
@@ -136,6 +137,45 @@ function draw() {
     if (!voicePlayed) {
       happyVoice.play();
       voicePlayed = true; // Set the flag to true to indicate the voice has been played
+    }
+  }
+
+  if (score >= 100) {
+    // Remove all sprites if the score reaches 100 or more
+    stove.remove();
+    esp.remove();
+    teapot.remove();
+    water.remove();
+    tea_leaves.remove();
+    choc_powder.remove();
+    milk.remove();
+    frothedmilk.remove();
+    sugar.remove();
+
+    // Additional logic or messages when the score is 100
+    noStroke()
+    fill("#FF4646")
+ellipse(180,180,250,140,80,80)
+fill("white")
+text("CONGRATULATIONS's🎊",90,160)
+text("YOU DID IT",130,180)
+text("QAHWA'S READY ☕",110,200)
+girl_talking.addAnimation("upset", girl_talking_upset)
+  } else if(score == 90 || score == 80 || score == 70){
+    noStroke()
+    fill("#FF4646")
+ellipse(180,180,250,140,80,80)
+fill("white")
+text("OPP'S😐",150,160)
+text("PLEASE CLICK ON THE RELOAD ",70,180)
+text("AND TRY AGAIN",120,200)
+girl_talking.addAnimation("upset", girl_talking_upset)
+  }
+  
+  else {
+    // Normal gameplay logic for sprites
+    if (stove.scale == 0.1) {
+      // Your existing code for sprite interactions
     }
   }
 }
